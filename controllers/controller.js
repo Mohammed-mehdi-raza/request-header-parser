@@ -5,7 +5,7 @@ const index = (req, res) => {
 };
 
 const whoami = (req, res) => {
-    const ip = req.clientIp;
+    const ip = req.ip;
     const language = req.get('Accept-Language')
     const software = req.get('user-agent');
     res.json({

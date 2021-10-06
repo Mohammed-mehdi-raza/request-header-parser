@@ -17,8 +17,8 @@ var cors = require('cors');
 app.use(cors({ optionsSuccessStatus: 200 })); // some legacy browsers choke on 204
 
 // http://expressjs.com/en/starter/static-files.html
-//app.enable('trust proxy');
-app.use(requestIp.mw());
+app.enable('trust proxy');
+//app.use(requestIp.mw());
 app.use(express.static('public'));
 app.use('/', routes);
 
