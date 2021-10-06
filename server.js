@@ -14,6 +14,7 @@ app.use(cors({ optionsSuccessStatus: 200 })); // some legacy browsers choke on 2
 
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
+app.use(express.json());
 app.enable('trust proxy');
 app.use('/', routes);
 
@@ -28,7 +29,9 @@ app.get("/api/hello", function(req, res) {
     res.json({ greeting: 'hello API' });
 });
 
-
+app.get('*', (req, res) => {
+    res.writeHead(404, "Not Found", { 'content-Type': 'text/plain' }).end("Not Found");
+});
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT || 3000, function() {

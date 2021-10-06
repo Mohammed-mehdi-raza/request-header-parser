@@ -13,6 +13,10 @@ const whoami = (req, res) => {
         "language": language,
         "software": software
     });
+    console.log(ip);
+    console.log(language);
+    console.log(software);
+
 };
 
 module.exports = { index, whoami };
