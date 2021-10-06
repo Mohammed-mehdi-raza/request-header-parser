@@ -8,7 +8,8 @@ var app = express();
 const routes = require('./routes/routes.js');
 const requestIp = require('request-ip');
 var ipMiddleware = (req, res, next) => {
-    constclientIP = requestIp.getClientIp(req);
+    const clientIP = requestIp.getClientIp(req);
+    console.log(clientIP);
     next();
 };
 // enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
@@ -17,8 +18,8 @@ var cors = require('cors');
 app.use(cors({ optionsSuccessStatus: 200 })); // some legacy browsers choke on 204
 
 // http://expressjs.com/en/starter/static-files.html
-app.enable('trust proxy');
-//app.use(requestIp.mw());
+app.set('trust proxy', true);
+app.use(requestIp.mw());
 app.use(express.static('public'));
 app.use('/', routes);
 
